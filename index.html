@@ -1,277 +1,171 @@
-<!-- index.html -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Sahla Bakery - Aneka Kue</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Levant Boulangerie — Toko Roti Serba Ada</title>
+  <meta name="description" content="Levant Boulangerie oleh Azka Sahla — toko roti serba ada dengan roti artisan, kue, pastry & lebih. Pink & putih, super modern, dengan animasi, slider, cart, dan checkout.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;800&display=swap" rel="stylesheet">
-  <!-- styles.css -->
-  <style>
-  /* ---------- Theme ---------- */
-  :root{
-    --cream: #FFF5E6;
-    --white: #ffffff;
-    --maroon: #7A1222;
-    --accent: #D9717C;
-    --muted: #8e8e8e;
-    --card-shadow: 0 8px 24px rgba(122,18,34,0.08);
-    --glass: rgba(255,255,255,0.7);
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0;
-    font-family: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-    background: linear-gradient(180deg,var(--cream) 0%, #fff 60%);
-    color:#222;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-  }
-  .container{max-width:1100px;margin:28px auto;padding:20px}
-
-  /* Header */
-  header{
-    display:flex;gap:18px;align-items:center;justify-content:space-between;margin-bottom:20px
-  }
-  .brand{
-    display:flex;gap:14px;align-items:center
-  }
-  .logo{
-    width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--maroon),var(--accent));display:flex;align-items:center;justify-content:center;color:var(--white);font-weight:800;font-size:20px;box-shadow:var(--card-shadow)
-  }
-  h1{margin:0;font-size:20px}
-  p.lead{margin:0;color:var(--muted);font-size:14px}
-
-  /* Controls */
-  .controls{display:flex;gap:12px;align-items:center}
-  .search{display:flex;align-items:center;background:var(--white);border-radius:12px;padding:8px 12px;box-shadow:var(--card-shadow)}
-  .search input{border:0;outline:0;font-size:14px;background:transparent}
-  .chips{display:flex;gap:8px}
-  .chip{background:var(--glass);padding:8px 12px;border-radius:999px;font-size:13px;color:var(--maroon);cursor:pointer;border:1px solid rgba(122,18,34,0.06)}
-  .chip.active{background:var(--maroon);color:var(--white);transform:translateY(-2px)}
-
-  /* Grid */
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;margin-top:22px}
-  .card{background:var(--white);border-radius:14px;padding:14px;box-shadow:var(--card-shadow);position:relative;overflow:visible;transition:transform .25s ease, box-shadow .25s ease}
-  .card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(122,18,34,0.12)}
-  .imgwrap{height:160px;border-radius:10px;background:linear-gradient(180deg,rgba(250,240,238,1),rgba(245,240,240,0.6));display:flex;align-items:center;justify-content:center;margin-bottom:12px;position:relative}
-  /* placeholder cake SVG */
-  .cake-svg{width:140px;height:120px}
-
-  .meta{display:flex;justify-content:space-between;align-items:center}
-  .title{font-weight:700;font-size:16px}
-  .price{font-weight:800;color:var(--maroon)}
-  .desc{color:var(--muted);font-size:13px;margin-top:8px}
-  .actions{display:flex;gap:8px;margin-top:12px}
-  .btn{padding:8px 12px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
-  .btn.primary{background:var(--maroon);color:var(--white)}
-  .btn.ghost{background:transparent;border:1px solid rgba(0,0,0,0.06)}
-
-  /* ribbon */
-  .ribbon{position:absolute;left:12px;top:12px;background:linear-gradient(90deg,#ffd27e,#ffbc66);padding:6px 10px;border-radius:8px;font-size:12px;font-weight:700;color:#6b3a00}
-
-  /* modal */
-  .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .18s ease}
-  .modal-backdrop.show{opacity:1;pointer-events:all}
-  .modal{background:var(--white);width:min(720px,95%);border-radius:14px;padding:18px;box-shadow:0 30px 80px rgba(0,0,0,0.3);transform:translateY(12px);transition:transform .18s ease}
-  .modal.show{transform:translateY(0)}
-
-  /* responsive */
-  @media (max-width:600px){
-    header{flex-direction:column;align-items:flex-start;gap:10px}
-    .imgwrap{height:140px}
-  }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="logo">BK</div>
-        <div>
-          <h1>Toko Kue Sahla Bakery</h1>
-          <p class="lead">Aneka kue premium — pesan online &amp; ambil di toko</p>
+  <!-- Audio (muted by default) -->
+  <audio id="bg-audio" src="assets/audio/levants-light-pad.wav" loop></audio>
+
+  <header class="site-header">
+    <div class="brand">
+      <img src="assets/img/logo.svg" alt="Levant Boulangerie Logo">
+      <div class="brand-text">
+        <h1>Levant Boulangerie</h1>
+        <p>oleh Azka Sahla</p>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a href="#produk">Produk</a>
+      <a href="#tentang">Tentang</a>
+      <a href="#kontak">Kontak</a>
+      <button id="musicToggle" class="btn ghost" aria-pressed="false" title="Toggle music">♫ Backsound</button>
+      <button id="openCart" class="btn primary cart-btn">🛒 <span id="cartCount">0</span></button>
+    </nav>
+  </header>
+
+  <!-- Hero Slider -->
+  <section class="hero">
+    <div class="slider" id="slider">
+      <div class="slide" style="background-image:url('assets/img/slide1.svg')">
+        <div class="slide-content">
+          <h2 class="reveal">Fresh Every Morning</h2>
+          <p class="reveal delay">Croissant butter berlapis dan kue cantik.</p>
+          <a href="#produk" class="btn primary reveal delay2">Belanja Sekarang</a>
         </div>
       </div>
-
-      <div class="controls">
-        <div class="search" role="search">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
-            <path d="M21 21l-4.35-4.35" stroke="#c1b1b1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="11" cy="11" r="6" stroke="#c1b1b1" stroke-width="2"/>
-          </svg>
-          <input id="searchInput" placeholder="Cari kue (mis. red velvet, tart)" aria-label="Cari kue">
-        </div>
-        <div class="chips" id="categoryChips">
-          <div class="chip active" data-cat="all">Semua</div>
-          <div class="chip" data-cat="cake">Cake</div>
-          <div class="chip" data-cat="tart">Tart</div>
-          <div class="chip" data-cat="cookies">Cookies</div>
-          <div class="chip" data-cat="seasonal">Musiman</div>
+      <div class="slide" style="background-image:url('assets/img/slide2.svg')">
+        <div class="slide-content">
+          <h2 class="reveal">Pink Paradise</h2>
+          <p class="reveal delay">Roti sourdough artisan dengan citarasa premium.</p>
+          <a href="#produk" class="btn primary reveal delay2">Jelajahi</a>
         </div>
       </div>
-    </header>
-
-    <main>
-      <section aria-label="Daftar kue" id="productGrid" class="grid">
-        <!-- cards generated by JavaScript -->
-      </section>
-    </main>
-  </div>
-
-  <!-- modal -->
-  <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <div style="display:flex;gap:16px;align-items:flex-start">
-        <div style="flex:1;min-width:150px">
-          <div id="modalImage" style="height:220px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#fff5f0,#fff)"></div>
-        </div>
-        <div style="flex:2">
-          <h2 id="modalTitle" style="margin:0 0 6px 0"></h2>
-          <div id="modalPrice" style="font-weight:800;color:var(--maroon);margin-bottom:8px"></div>
-          <p id="modalDesc" style="margin-top:0;color:var(--muted)"></p>
-          <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
-            <button class="btn primary" id="addToCartModal">Tambah ke Keranjang</button>
-            <button class="btn ghost" id="closeModal">Tutup</button>
-          </div>
+      <div class="slide" style="background-image:url('assets/img/slide3.svg')">
+        <div class="slide-content">
+          <h2 class="reveal">Sweet Moments</h2>
+          <p class="reveal delay">Macaron & pastry untuk rayakan momenmu.</p>
+          <a href="#produk" class="btn primary reveal delay2">Lihat Menu</a>
         </div>
       </div>
     </div>
+    <button class="slider-btn prev" id="prevSlide" aria-label="Sebelumnya">‹</button>
+    <button class="slider-btn next" id="nextSlide" aria-label="Berikutnya">›</button>
+    <div class="dots" id="sliderDots" aria-label="Navigasi slider"></div>
+  </section>
+
+  <!-- Product Grid -->
+  <section id="produk" class="section">
+    <div class="section-head">
+      <h3>Favorit Levant</h3>
+      <p>Semua yang kamu mau, dari roti klasik sampai kue kekinian.</p>
+    </div>
+    <div class="grid">
+      <!-- Items injected by JS -->
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="tentang" class="section alt reveal">
+    <div class="section-head">
+      <h3>Tentang Levant Boulangerie</h3>
+      <p>Levant Boulangerie lahir dari cinta Azka Sahla pada aroma roti hangat.
+        Kami menyajikan roti & pastry dengan bahan terbaik, dibuat setiap hari.</p>
+    </div>
+    <div class="features">
+      <div class="feature-card">
+        <div class="icon">🥐</div>
+        <h4>Fresh Daily</h4>
+        <p>Dipanggang setiap pagi agar selalu renyah & wangi.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🎀</div>
+        <h4>Estetik</h4>
+        <p>Desain pink-putih yang manis, cocok untuk feed-mu.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🚚</div>
+        <h4>Cepat</h4>
+        <p>Ambil di toko atau kirim ke rumah dengan aman.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / CTA -->
+  <section id="kontak" class="section reveal">
+    <div class="cta">
+      <h3>Siap maniskan harimu?</h3>
+      <p>Tambahkan ke keranjang & checkout — kami yang urus sisanya!</p>
+      <a href="#produk" class="btn primary">Mulai Belanja</a>
+    </div>
+  </section>
+
+  <!-- Cart Drawer -->
+  <aside id="cartDrawer" class="cart-drawer" aria-hidden="true">
+    <div class="cart-header">
+      <h4>Keranjang</h4>
+      <button id="closeCart" class="btn ghost">✕</button>
+    </div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <strong id="cartTotal">Rp0</strong>
+      </div>
+      <button id="checkoutBtn" class="btn primary">Checkout</button>
+    </div>
+  </aside>
+
+  <!-- Checkout Modal -->
+  <div id="checkoutModal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>Checkout</h4>
+        <button id="closeCheckout" class="btn ghost">✕</button>
+      </div>
+      <form id="checkoutForm" class="form">
+        <label>
+          Nama Lengkap
+          <input type="text" name="name" required placeholder="Nama kamu" />
+        </label>
+        <label>
+          No. HP / WhatsApp
+          <input type="tel" name="phone" required placeholder="08xxxx" />
+        </label>
+        <label>
+          Alamat
+          <textarea name="address" rows="3" required placeholder="Alamat lengkap"></textarea>
+        </label>
+        <label>
+          Metode Pembayaran
+          <select name="payment" required>
+            <option value="">Pilih</option>
+            <option>Transfer Bank</option>
+            <option>QRIS</option>
+            <option>COD</option>
+          </select>
+        </label>
+        <button type="submit" class="btn primary">Buat Pesanan</button>
+      </form>
+      <p class="small">* Demo tanpa backend. Data tersimpan lokal (browser).</p>
+    </div>
   </div>
 
-  <!-- script.js -->
-  <script>
-  const products = [
-    {id:1,name:'Red Velvet Classic',category:'cake',price:125000,short:'Lapisan lembut dengan krim keju.',flag:'Best Seller'},
-    {id:2,name:'Lemon Tart Segar',category:'tart',price:95000,short:'Asam manis, cocok untuk sore hari.'},
-    {id:3,name:'Cookies Cokelat Chunk',category:'cookies',price:45000,short:'Renyah di pinggir, chewy di tengah.'},
-    {id:4,name:'Kue Keju Basque',category:'cake',price:135000,short:'Tekstur lembut dengan lapisan karamel ringan',flag:'Pilihan Chef'},
-    {id:5,name:'Tart Buah Musiman',category:'seasonal',price:110000,short:'Penuh buah lokal segar.'},
-    {id:6,name:'Chocolate Truffle Cake',category:'cake',price:150000,short:'Kaya cokelat dan mewah.'}
-  ];
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Levant Boulangerie — Azka Sahla. All rights reserved.</p>
+  </footer>
 
-  const grid = document.getElementById('productGrid');
-  const chips = Array.from(document.querySelectorAll('.chip'));
-  const searchInput = document.getElementById('searchInput');
+  <button id="scrollTop" class="scroll-top" aria-label="Kembali ke atas">↑</button>
 
-  function formatRupiah(n){return 'Rp ' + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
-
-  function cakeSVG(title){
-    // simple SVG placeholder using title hue
-    const base = Math.abs(hashCode(title))%360;
-    return `
-      <svg class="cake-svg" viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-        <defs>
-          <linearGradient id="g${base}" x1="0" x2="1">
-            <stop offset="0" stop-color="hsl(${base} 60% 70%)"/>
-            <stop offset="1" stop-color="hsl(${(base+30)%360} 60% 60%)"/>
-          </linearGradient>
-        </defs>
-        <rect x="10" y="60" rx="12" ry="12" width="140" height="50" fill="url(#g${base})" />
-        <ellipse cx="80" cy="60" rx="60" ry="18" fill="rgba(255,255,255,0.55)" />
-        <g opacity="0.95">
-          <rect x="30" y="24" rx="8" ry="8" width="100" height="36" fill="#fff" stroke="rgba(0,0,0,0.03)" />
-          <text x="80" y="46" dominant-baseline="middle" text-anchor="middle" font-size="12" font-weight="700" fill="#5b3a3a">${escapeHtml(title)}</text>
-        </g>
-      </svg>
-    `;
-  }
-
-  function hashCode(str){let h=0;for(let i=0;i<str.length;i++){h=(h<<5)-h+str.charCodeAt(i);h|=0}return h}
-  function escapeHtml(s){return s.replace(/[&<>"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c]))}
-
-  function render(items){
-    grid.innerHTML = '';
-    items.forEach(p=>{
-      const card = document.createElement('article');card.className='card';
-
-      card.innerHTML = `
-        <div class="ribbon">${p.flag||''}</div>
-        <div class="imgwrap">${cakeSVG(p.name)}</div>
-        <div class="meta">
-          <div class="title">${escapeHtml(p.name)}</div>
-          <div class="price">${formatRupiah(p.price)}</div>
-        </div>
-        <div class="desc">${escapeHtml(p.short)}</div>
-        <div class="actions">
-          <button class="btn primary" data-id="${p.id}">Lihat</button>
-          <button class="btn ghost" data-add="${p.id}">Tambah</button>
-        </div>
-      `;
-
-      // small entrance animation
-      card.style.opacity = 0; card.style.transform = 'translateY(8px)';
-      grid.appendChild(card);
-      requestAnimationFrame(()=>{card.style.transition='opacity .35s ease, transform .35s ease';card.style.opacity=1;card.style.transform='translateY(0)'});
-    });
-  }
-
-  // initial render
-  render(products);
-
-  // filtering
-  chips.forEach(c=>c.addEventListener('click',e=>{
-    chips.forEach(x=>x.classList.remove('active'));
-    c.classList.add('active');
-    applyFilters();
-  }));
-
-  searchInput.addEventListener('input',applyFilters);
-
-  function applyFilters(){
-    const q = searchInput.value.trim().toLowerCase();
-    const active = document.querySelector('.chip.active').dataset.cat;
-    let result = products.filter(p=>{
-      const inCat = active === 'all' ? true : p.category === active;
-      const inQ = q === '' ? true : (p.name+p.short+p.category).toLowerCase().includes(q);
-      return inCat && inQ;
-    });
-    render(result);
-  }
-
-  // delegated interactions for dynamic cards
-  document.body.addEventListener('click', e=>{
-    const view = e.target.closest('button[data-id]');
-    const add = e.target.closest('button[data-add]');
-    if(view){
-      const id = Number(view.dataset.id); openModal(products.find(p=>p.id===id));
-    }
-    if(add){
-      const id = Number(add.dataset.add); animateAddToCart(e.target); // visual effect
-      console.log('Tambah ke keranjang',id);
-    }
-  });
-
-  // modal logic
-  const backdrop = document.getElementById('modalBackdrop');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalPrice = document.getElementById('modalPrice');
-  const modalDesc = document.getElementById('modalDesc');
-  const modalImage = document.getElementById('modalImage');
-  document.getElementById('closeModal').addEventListener('click',closeModal);
-  backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeModal()});
-
-  function openModal(p){
-    modalTitle.textContent = p.name;
-    modalPrice.textContent = formatRupiah(p.price);
-    modalDesc.textContent = p.short;
-    modalImage.innerHTML = cakeSVG(p.name);
-    backdrop.classList.add('show');
-    setTimeout(()=>backdrop.querySelector('.modal').classList.add('show'),10);
-    backdrop.setAttribute('aria-hidden','false');
-  }
-  function closeModal(){backdrop.classList.remove('show');backdrop.querySelector('.modal').classList.remove('show');backdrop.setAttribute('aria-hidden','true')}
-
-  // simple add to cart animation (pulse)
-  function animateAddToCart(btn){
-    btn.animate([{transform:'scale(1)'},{transform:'scale(1.12)'},{transform:'scale(1)'}],{duration:260,easing:'cubic-bezier(.2,.9,.3,1)'});
-  }
-
-  // accessibility: allow esc to close
-  window.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
